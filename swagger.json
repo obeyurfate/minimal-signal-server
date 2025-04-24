@@ -1,0 +1,800 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Signal API Stub",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/accounts/sms/code": {
+      "post": {
+        "summary": "Request Sms Code",
+        "operationId": "request_sms_code_v1_accounts_sms_code_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmsCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/code/{verification_code}": {
+      "put": {
+        "summary": "Verify Account",
+        "operationId": "verify_account_v1_accounts_code__verification_code__put",
+        "parameters": [
+          {
+            "name": "verification_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Verification Code"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/keys": {
+      "put": {
+        "summary": "Set Pre Keys",
+        "operationId": "set_pre_keys_v2_keys_put",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetPreKeysRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/devices": {
+      "get": {
+        "summary": "Get Devices",
+        "operationId": "get_devices_v1_devices_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceInfo"
+                  },
+                  "title": "Response Get Devices V1 Devices Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/devices/link": {
+      "post": {
+        "summary": "Add Device",
+        "operationId": "add_device_v1_devices_link_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceLinkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLinkResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/sync/devices": {
+      "post": {
+        "summary": "Request Sync",
+        "operationId": "request_sync_v1_sync_devices_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/keys/{recipient_id}/{device_id}": {
+      "get": {
+        "summary": "Get Pre Key Bundle",
+        "operationId": "get_pre_key_bundle_v2_keys__recipient_id___device_id__get",
+        "parameters": [
+          {
+            "name": "recipient_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Recipient Id"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Device Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreKeyBundleResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/messages/{recipient_id}": {
+      "put": {
+        "summary": "Send Message",
+        "operationId": "send_message_v1_messages__recipient_id__put",
+        "parameters": [
+          {
+            "name": "recipient_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Recipient Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/messages": {
+      "get": {
+        "summary": "Receive Messages",
+        "operationId": "receive_messages_v1_messages_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  "title": "Response Receive Messages V1 Messages Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DataMessageRequest": {
+        "properties": {
+          "destination": {
+            "type": "string",
+            "title": "Destination"
+          },
+          "deviceId": {
+            "type": "integer",
+            "title": "Deviceid"
+          },
+          "messageType": {
+            "type": "string",
+            "title": "Messagetype"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          },
+          "attachments": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attachments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "destination",
+          "deviceId",
+          "messageType",
+          "content"
+        ],
+        "title": "DataMessageRequest"
+      },
+      "DeviceInfo": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "lastSeen": {
+            "type": "integer",
+            "title": "Lastseen"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "lastSeen"
+        ],
+        "title": "DeviceInfo"
+      },
+      "DeviceLinkRequest": {
+        "properties": {
+          "deviceLinkingCode": {
+            "type": "string",
+            "title": "Devicelinkingcode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deviceLinkingCode"
+        ],
+        "title": "DeviceLinkRequest"
+      },
+      "DeviceLinkResponse": {
+        "properties": {
+          "deviceId": {
+            "type": "integer",
+            "title": "Deviceid"
+          },
+          "uuid": {
+            "type": "string",
+            "title": "Uuid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deviceId",
+          "uuid"
+        ],
+        "title": "DeviceLinkResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Message": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "sourceDevice": {
+            "type": "integer",
+            "title": "Sourcedevice"
+          },
+          "timestamp": {
+            "type": "integer",
+            "title": "Timestamp"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "sourceDevice",
+          "timestamp",
+          "type",
+          "content"
+        ],
+        "title": "Message"
+      },
+      "MessageResponse": {
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "timestamp"
+        ],
+        "title": "MessageResponse"
+      },
+      "PreKey": {
+        "properties": {
+          "keyId": {
+            "type": "integer",
+            "title": "Keyid"
+          },
+          "publicKey": {
+            "type": "string",
+            "title": "Publickey"
+          }
+        },
+        "type": "object",
+        "required": [
+          "keyId",
+          "publicKey"
+        ],
+        "title": "PreKey"
+      },
+      "PreKeyBundleResponse": {
+        "properties": {
+          "identityKey": {
+            "type": "string",
+            "title": "Identitykey"
+          },
+          "signedPreKey": {
+            "$ref": "#/components/schemas/SignedPreKey"
+          },
+          "preKey": {
+            "$ref": "#/components/schemas/PreKey"
+          }
+        },
+        "type": "object",
+        "required": [
+          "identityKey",
+          "signedPreKey",
+          "preKey"
+        ],
+        "title": "PreKeyBundleResponse"
+      },
+      "SetPreKeysRequest": {
+        "properties": {
+          "identityKey": {
+            "type": "string",
+            "title": "Identitykey"
+          },
+          "signedPreKey": {
+            "$ref": "#/components/schemas/SignedPreKey"
+          },
+          "lastResortKey": {
+            "$ref": "#/components/schemas/PreKey"
+          },
+          "oneTimePreKeys": {
+            "items": {
+              "$ref": "#/components/schemas/PreKey"
+            },
+            "type": "array",
+            "title": "Onetimeprekeys"
+          }
+        },
+        "type": "object",
+        "required": [
+          "identityKey",
+          "signedPreKey",
+          "lastResortKey",
+          "oneTimePreKeys"
+        ],
+        "title": "SetPreKeysRequest"
+      },
+      "SignedPreKey": {
+        "properties": {
+          "keyId": {
+            "type": "integer",
+            "title": "Keyid"
+          },
+          "publicKey": {
+            "type": "string",
+            "title": "Publickey"
+          },
+          "signature": {
+            "type": "string",
+            "title": "Signature"
+          }
+        },
+        "type": "object",
+        "required": [
+          "keyId",
+          "publicKey",
+          "signature"
+        ],
+        "title": "SignedPreKey"
+      },
+      "SmsCodeRequest": {
+        "properties": {
+          "number": {
+            "type": "string",
+            "title": "Number"
+          },
+          "androidSmsRetrieverSupported": {
+            "type": "boolean",
+            "title": "Androidsmsretrieversupported"
+          },
+          "captcha": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captcha"
+          },
+          "challenge": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Challenge"
+          }
+        },
+        "type": "object",
+        "required": [
+          "number",
+          "androidSmsRetrieverSupported"
+        ],
+        "title": "SmsCodeRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VerifyAccountRequest": {
+        "properties": {
+          "number": {
+            "type": "string",
+            "title": "Number"
+          },
+          "signalingKey": {
+            "type": "string",
+            "title": "Signalingkey"
+          },
+          "registrationId": {
+            "type": "integer",
+            "title": "Registrationid"
+          },
+          "fetchesMessages": {
+            "type": "boolean",
+            "title": "Fetchesmessages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "number",
+          "signalingKey",
+          "registrationId",
+          "fetchesMessages"
+        ],
+        "title": "VerifyAccountRequest"
+      }
+    }
+  }
+}
